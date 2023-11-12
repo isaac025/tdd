@@ -1,6 +1,9 @@
 module Main
 
-{-export
+import Data.String
+import Data.List
+import System.REPL
+
 average : (str : String) -> Double
 average str = let numWords = wordCount str
                   totalLength = sum (allLengths (words str)) in
@@ -8,14 +11,13 @@ average str = let numWords = wordCount str
 
   where
     wordCount : String -> Nat
-    wordCount str = List.length (words str)
+    wordCount str = length (words str)
 
     allLengths : List String -> List Nat
-    allLengths strs = map List.length strs
+    allLengths strs = map length strs
 
 showAverage : String -> String
 showAverage str = "The average word length is: " ++ show (average str) ++ "\n"
--}
 
 double : Num ty => ty -> ty
 double x = x + x
@@ -48,7 +50,7 @@ pythagoras x y = sqrt (square x + square y)
     square x = x * x 
 
 main : IO ()
-main = putStrLn "hello" -- ?repl "Enter a string: " showAverage
+main = repl "Enter a string: " showAverage
 
 -- Exercises
 -- 1.
